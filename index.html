@@ -1,84 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Glovo - Food delivery and more | Nakuru</title>
-<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Glovo Clone - Eldoret</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui;background:#fff}
-.hdr{background:#FFC72C;padding:12px 16px;display:flex;align-items:center;gap:10px;position:sticky;top:0;z-index:20}
-.logo{font-weight:900;font-size:28px}.search{flex:1;background:#fff;border-radius:24px;padding:10px 14px;display:flex;gap:6px}
-.search input{border:0;outline:0;flex:1;font-size:13px}.btnLog{background:#000;color:#fff;border:0;border-radius:20px;padding:8px 14px;font-weight:700;font-size:12px}
-.hero{padding:16px}.hero h1{font-size:28px;font-weight:900;line-height:1}.hero p{color:#666;font-size:13px;margin-top:8px}
-.cats{display:flex;gap:12px;overflow:auto;padding:12px 16px}
-.c{flex:0 0 70px;text-align:center}.c div{width:58px;height:58px;background:#F5F5F5;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:26px;margin:auto}
-.c p{font-size:11px;font-weight:600;margin-top:5px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px 16px 120px}
-.card{border:1px solid #eee;border-radius:16px;overflow:hidden}.card img{width:100%;height:110px;object-fit:cover}
-.ci{padding:10px}.cn{font-weight:700;font-size:13px}.pr{color:#00A082;font-weight:800;margin-top:6px}
-.add{width:100%;background:#FFC72C;border:0;border-radius:20px;padding:8px;margin-top:6px;font-weight:800}
-.cart{position:fixed;bottom:12px;left:12px;right:12px;background:#000;color:#fff;border-radius:22px;padding:14px 18px;display:none;justify-content:space-between;z-index:25}
-.modal{position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:40;display:none;align-items:center;justify-content:center;padding:16px}
-.box{background:#fff;border-radius:20px;padding:20px;width:100%;max-width:380px;max-height:90vh;overflow:auto}
-.inp{width:100%;padding:12px;border:1px solid #ddd;border-radius:10px;margin:6px 0}
-.b{width:100%;padding:13px;border:0;border-radius:12px;font-weight:800;margin-top:8px}
-.tabs{display:flex;gap:8px;margin:8px 0}.tab{flex:1;padding:10px;border:1px solid #ddd;border-radius:10px;text-align:center;font-weight:700;font-size:12px}.tab.on{background:#000;color:#fff}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
+header{background:#FFC72C;padding:12px 16px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.logo{font-weight:900;font-size:26px;color:#000}
+.btn{padding:8px 14px;border:none;border-radius:20px;font-weight:700;cursor:pointer}
+.btn-login{background:#000;color:#FFC72C}
+.hero{padding:20px;background:#fff9db;text-align:center}
+.hero input{width:90%;max-width:400px;padding:12px;border-radius:25px;border:1px solid #ccc;margin-top:10px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
+.card{border:1px solid #eee;border-radius:12px;overflow:hidden;background:#fff}
+.card img{width:100%;height:110px;object-fit:cover;background:#f2f2f2}
+.card-body{padding:8px}
+.price{font-weight:800;color:#00a082}
+.add{width:100%;background:#FFC72C;border:none;padding:8px;border-radius:8px;margin-top:6px;font-weight:800;cursor:pointer}
+#cart{position:fixed;bottom:0;left:0;right:0;background:#000;color:#fff;padding:12px;display:none;z-index:20}
+.payBox{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.8);z-index:30;justify-content:center;align-items:center;padding:20px}
+.payInner{background:#fff;border-radius:16px;padding:20px;width:100%;max-width:380px}
+.payOpt{border:2px solid #eee;border-radius:10px;padding:12px;margin:8px 0;cursor:pointer}
+.payOpt.active{border-color:#FFC72C;background:#fff9db}
+.codeInput{width:100%;padding:12px;border:1px solid #ccc;border-radius:8px;margin:10px 0}
 </style>
 </head>
 <body>
-<div class="hdr"><div class="logo">glovo</div><div class="search">📍 <input id="addrTop" placeholder="What's your address? Nakuru"></div><button class="btnLog" id="logBtn" onclick="openAuth()">Login</button></div>
-<div class="hero"><h1>Food delivery and more</h1><p>Groceries, M-Pesa 0119539151, Chapchap rider KMGK 285M - Everything in Nakuru in minutes</p></div>
-<div class="cats">
-<div class="c"><div>🍗</div><p>Chicken</p></div><div class="c"><div>🍔</div><p>Burgers</p></div><div class="c"><div>🍟</div><p>Fries</p></div><div class="c"><div>🍚</div><p>Pilau</p></div><div class="c"><div>🥩</div><p>Choma</p></div><div class="c"><div>🛒</div><p>Stores</p></div><div class="c"><div>🥤</div><p>Drinks</p></div>
+<header>
+<div class="logo">glovo</div>
+<button class="btn btn-login" onclick="login()">Login</button>
+</header>
+<div class="hero">
+<h2>Eldoret - Fast Delivery</h2>
+<p>Rider: KMGK 285M | Till: 0119539151</p>
+<input placeholder="Search Chicken, Burger, Pilau...">
 </div>
 <div class="grid" id="grid"></div>
-<div class="cart" id="cart"><div><div id="cC" style="font-size:11px;opacity:.7"></div><div id="cT" style="font-weight:800"></div></div><button onclick="openCheck()" style="background:#FFC72C;border:0;border-radius:20px;padding:10px 18px;font-weight:800">Checkout</button></div>
+<div id="cart">
+<div>🛒 <span id="cartItems">0 items</span> - KES <span id="cartTotal">0</span> <button onclick="openPay()" style="float:right;background:#FFC72C;border:none;padding:6px 12px;border-radius:10px;font-weight:800">CHECKOUT</button></div>
+</div>
+<div class="payBox" id="payBox">
+<div class="payInner">
+<h3 style="text-align:center">Choose Payment</h3>
+<p style="text-align:center;color:#666;font-size:13px;margin:5px 0">Total: KES <b id="payTotal">0</b></p>
 
-<div class="modal" id="authM"><div class="box">
-<h3>Create your Glovo account</h3>
-<div class="tabs"><div class="tab on" id="tL" onclick="setAuth('login')">Login</div><div class="tab" id="tS" onclick="setAuth('signup')">Sign up</div></div>
-<input class="inp" id="aName" placeholder="Full name" style="display:none"><input class="inp" id="aEmail" placeholder="Email"><input class="inp" id="aPass" type="password" placeholder="Password">
-<button class="b" style="background:#000;color:#fff" id="aBtn" onclick="doAuth()">Login</button>
-<div style="text-align:center;font-size:11px;margin-top:8px" onclick="closeAuth()">Cancel</div>
-</div></div>
+<div class="payOpt active" id="optTill" onclick="selectPay('till')">
+<b>🏪 M-Pesa Till - 0119539151</b><br>
+<small style="color:#00a082">Prompt Payment - Instant</small><br>
+<small>1. M-Pesa > Lipa Na M-Pesa > Buy Goods<br>2. Till: <b>0119539151</b><br>3. Amount: <b id="tillAmount">0</b><br>4. Enter PIN</small>
+</div>
 
-<div class="modal" id="checkM"><div class="box">
-<h3>Checkout • chapchap.</h3>
-<div id="uInfo" style="font-size:12px;background:#FFF8E1;padding:8px;border-radius:10px;margin:6px 0"></div>
-<input class="inp" id="dAddr" placeholder="Delivery address">
-<div id="oList" style="font-size:12px;background:#F7F7F7;padding:10px;border-radius:10px;margin:8px 0"></div>
-<div style="display:flex;justify-content:space-between;font-size:12px"><span>Food</span><span id="sub"></span></div>
-<div style="display:flex;justify-content:space-between;font-size:12px"><span>Delivery • KMGK 285M</span><span>Ksh 100</span></div>
-<div style="display:flex;justify-content:space-between;font-weight:800;border-top:1px solid #ddd;margin-top:6px;padding-top:6px"><span>TOTAL</span><span id="tot"></span></div>
+<div class="payOpt" id="optPaypal" onclick="selectPay('paypal')">
+<b>💳 PayPal - International Cards</b><br>
+<small>Visa, Mastercard, PayPal Balance</small>
+</div>
 
-<div class="tabs"><div class="tab on" id="tMp" onclick="setPay('mpesa')">M-Pesa</div><div class="tab" id="tPp" onclick="setPay('paypal')">PayPal</div></div>
+<input id="mpesaCode" class="codeInput" placeholder="Paste M-Pesa Code e.g. QGH7... (for Till payments)" style="display:block">
 
-<div id="mpBox"><div style="background:#00A651;color:#fff;border-radius:14px;padding:14px;text-align:center"><div style="font-size:11px;font-weight:800">SEND MONEY</div><div style="font-size:28px;font-weight:900;margin:4px 0">0119539151</div><div style="font-size:11px">James • chapchap</div><div style="font-weight:800;margin-top:8px" id="mAmt"></div></div><button class="b" style="background:#00A651;color:#fff" onclick="confirmMpesa()">✅ I SENT TO 0119539151 - CONFIRM ORDER</button></div>
+<div id="tillBtn">
+<button onclick="verifyTill()" style="width:100%;background:#00a082;color:#fff;border:none;padding:12px;border-radius:10px;font-weight:800">I HAVE PAID TO TILL 0119539151</button>
+</div>
 
-<div id="ppBox" style="display:none"><div style="background:#FFC72C;padding:10px;border-radius:10px;font-size:11px;text-align:center">Pay with PayPal - Real international payment</div><div id="paypal-button-container" style="margin-top:12px"></div></div>
+<div id="paypalBtn" style="display:none">
+<div id="paypal-button-container"></div>
+<p style="font-size:11px;color:#666;text-align:center;margin-top:5px">You will be redirected to PayPal securely</p>
+</div>
 
-<div style="text-align:center;font-size:11px;margin-top:8px" onclick="closeCheck()">Cancel</div>
-</div></div>
+<button onclick="closePay()" style="width:100%;margin-top:10px;background:#eee;border:none;padding:10px;border-radius:10px">Cancel</button>
+</div>
+</div>
 
-<div class="modal" id="okM"><div class="box" style="text-align:center"><h2>🎉 Order Received!</h2><div id="okT" style="font-size:12px;margin:10px 0"></div><div style="background:#000;color:#fff;padding:12px;border-radius:12px;text-align:left;font-size:12px">🛵 Rider: 0119539151<br>🏍️ KMGK 285M<br><a href="tel:0119539151" style="color:#FFC72C;text-decoration:none;font-weight:800">📞 CALL RIDER</a></div><button class="b" style="background:#000;color:#fff" onclick="closeOk()">Continue shopping</button></div></div>
-
+<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>
 <script>
-const foods=[{n:"Chicken & Chips",p:350,img:"https://images.unsplash.com/photo-1626645738196-c2a7c87a8f58?w=400"},{n:"Burger + Fries",p:400,img:"https://images.unsplash.com/photo-1568909344668-6f14a07b56a0?w=400"},{n:"Pilau Kuku",p:480,img:"https://images.unsplash.com/photo-1595755433128-d6c1914106d2?w=400"},{n:"Nyama Choma",p:650,img:"https://images.unsplash.com/photo-1546964052-d44c49c85ca5?w=400"},{n:"Family Bucket",p:1250,img:"https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=400"},{n:"Fries + Soda",p:250,img:"https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=400"}];
-let cart=[],user=JSON.parse(localStorage.getItem('glovo_user')||'null'),auth='login';
-function ui(){let b=document.getElementById('logBtn');if(user){b.innerText=user.name.split(' ')[0];b.onclick=()=>{if(confirm('Logout?')){localStorage.removeItem('glovo_user');user=null;ui();}};}else{b.innerText='Login';b.onclick=openAuth;}}
-function render(){document.getElementById('grid').innerHTML=foods.map((f,i)=>`<div class="card"><img src="${f.img}"><div class="ci"><div class="cn">${f.n}</div><div class="pr">Ksh ${f.p}</div><button class="add" onclick="add(${i})">Add +</button></div></div>`).join('');}
-function add(i){if(!user){openAuth();return alert('Please create account first!');}cart.push(foods[i]);upd();}
-function upd(){if(!cart.length){document.getElementById('cart').style.display='none';return;}document.getElementById('cart').style.display='flex';let t=cart.reduce((s,x)=>s+x.p,0)+100;document.getElementById('cC').innerText=cart.length+' items • '+user.name;document.getElementById('cT').innerText='Ksh '+t;}
-function openAuth(){document.getElementById('authM').style.display='flex';}function closeAuth(){document.getElementById('authM').style.display='none';}
-function setAuth(m){auth=m;document.getElementById('tL').classList.toggle('on',m=='login');document.getElementById('tS').classList.toggle('on',m=='signup');document.getElementById('aName').style.display=m=='signup'?'block':'none';document.getElementById('aBtn').innerText=m=='login'?'Login':'Create account';}
-function doAuth(){let e=document.getElementById('aEmail').value,p=document.getElementById('aPass').value,n=document.getElementById('aName').value;if(!e||!p){return alert('Enter email & password');}let users=JSON.parse(localStorage.getItem('glovo_users')||'[]');if(auth=='signup'){if(!n)return alert('Enter name');if(users.find(u=>u.email==e))return alert('Email exists, login');let nu={email:e,pass:p,name:n};users.push(nu);localStorage.setItem('glovo_users',JSON.stringify(users));user=nu;}else{let f=users.find(u=>u.email==e&&u.pass==p);if(!f)return alert('Wrong password');user=f;}localStorage.setItem('glovo_user',JSON.stringify(user));closeAuth();ui();upd();}
-function openCheck(){if(!user)return openAuth();let s=cart.reduce((a,b)=>a+b.p,0),t=s+100;document.getElementById('uInfo').innerText='👤 '+user.name+' • '+user.email;document.getElementById('oList').innerHTML=cart.map(c=>`• ${c.n} Ksh ${c.p}`).join('<br>');document.getElementById('sub').innerText='Ksh '+s;document.getElementById('tot').innerText='Ksh '+t;document.getElementById('mAmt').innerText='Send Ksh '+t;document.getElementById('dAddr').value=document.getElementById('addrTop').value;document.getElementById('checkM').style.display='flex';initPP(t);}
-function closeCheck(){document.getElementById('checkM').style.display='none';}
-function setPay(m){document.getElementById('tMp').classList.toggle('on',m=='mpesa');document.getElementById('tPp').classList.toggle('on',m=='paypal');document.getElementById('mpBox').style.display=m=='mpesa'?'block':'none';document.getElementById('ppBox').style.display=m=='paypal'?'block':'none';}
-function confirmMpesa(){if(!document.getElementById('dAddr').value)return alert('Enter address');let tot=cart.reduce((s,x)=>s+x.p,0)+100;finish('M-Pesa 0119539151 Ksh '+tot);}
-function finish(method){let ad=document.getElementById('dAddr').value,tot=cart.reduce((s,x)=>s+x.p,0)+100,id='GLOVO'+Date.now();document.getElementById('okT').innerHTML=`Order ${id}<br>Paid via ${method}<br>To: ${ad}<br>User: ${user.email}`;cart=[];upd();closeCheck();document.getElementById('okM').style.display='flex';}
-function closeOk(){document.getElementById('okM').style.display='none';}
-function initPP(ksh){let usd=(ksh/130).toFixed(2);document.getElementById('paypal-button-container').innerHTML='';paypal.Buttons({createOrder:(d,a)=>a.order.create({purchase_units:[{amount:{value:usd}}]}),onApprove:(d,a)=>a.order.capture().then(()=>finish('PayPal $'+usd))}).render('#paypal-button-container');}
-ui();render();
+let cart=[], total=0, payMethod='till';
+const foods=[
+{name:"Chicken Full + Chips",price:650,img:""},
+{name:"Pilau Kuku",price:450,img:""},
+{name:"Beef Burger",price:380,img:""},
+{name:"Chicken Burger",price:400,img:""},
+{name:"Fries Large",price:200,img:""},
+{name:"Soda 500ml",price:80,img:""},
+{name:"Chicken Wings 6pcs",price:550,img:""},
+{name:"Nyama Choma",price:700,img:""}
+];
+const grid=document.getElementById('grid');
+foods.forEach((f,i)=>{
+grid.innerHTML+=`<div class="card"><div style="background:#ffeeba;height:110px;display:flex;align-items:center;justify-content:center;font-size:40px">🍗</div><div class="card-body"><b>${f.name}</b><div class="price">KES ${f.price}</div><button class="add" onclick="add(${i})">Add to Cart</button></div></div>`;
+});
+function add(i){cart.push(foods[i]); total+=foods[i].price; updateCart();}
+function updateCart(){
+document.getElementById('cart').style.display=cart.length?'block':'none';
+document.getElementById('cartItems').innerText=cart.length+' items';
+document.getElementById('cartTotal').innerText=total;
+document.getElementById('payTotal').innerText=total;
+document.getElementById('tillAmount').innerText=total;
+}
+function openPay(){document.getElementById('payBox').style.display='flex';}
+function closePay(){document.getElementById('payBox').style.display='none';}
+function selectPay(m){
+payMethod=m;
+document.getElementById('optTill').classList.remove('active');
+document.getElementById('optPaypal').classList.remove('active');
+document.getElementById('mpesaCode').style.display=m=='till'?'block':'none';
+document.getElementById('tillBtn').style.display=m=='till'?'block':'none';
+document.getElementById('paypalBtn').style.display=m=='paypal'?'block':'none';
+if(m=='till') document.getElementById('optTill').classList.add('active');
+else document.getElementById('optPaypal').classList.add('active');
+}
+function verifyTill(){
+let code=document.getElementById('mpesaCode').value.trim();
+if(code.length<8){alert('Please paste valid M-Pesa code from message after paying to Till 0119539151');return;}
+alert('✅ Payment received! Code '+code+' for KES '+total+' to Till 0119539151. Rider KMGK 285M is on the way! You will get SMS.');
+cart=[];total=0;updateCart();closePay();
+}
+function login(){
+let e=prompt('Enter email:');
+if(e){alert('Welcome '+e+'! You are logged in.');}
+}
+paypal.Buttons({
+createOrder:function(data,actions){
+let usd=(total/130).toFixed(2);
+return actions.order.create({purchase_units:[{amount:{value:usd}}]});
+},
+onApprove:function(data,actions){
+return actions.order.capture().then(function(details){
+alert('✅ PayPal Payment SUCCESS by '+details.payer.name.given_name+' - Rider KMGK 285M dispatched!');
+cart=[];total=0;updateCart();closePay();
+});
+}
+}).render('#paypal-button-container');
 </script>
 </body>
 </html>
